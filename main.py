@@ -1,12 +1,17 @@
-from biblioteca import Pessoa
+from biblioteca import Corredor, Nadador, Ciclista, TriAtleta
 
-#print(aluno01.nome, aluno01.peso,aluno01.idade)
+corredorUm = Corredor()
+nadadorUm = Nadador()
+ciclistaUm = Ciclista()
+triaTletaUm = TriAtleta()
 
-aluno01 = Pessoa("Guilherme", 21, 82)
-aluno02 = Pessoa("Victor", 20, 76)
+triaTletaUm.aposentar()
+triaTletaUm.aquecer()
+triaTletaUm.nadar()
 
-aluno01.comer()
-aluno01.falar()
-aluno01.pararComer()
-aluno01.falar()
+
+
+
+
+
 
