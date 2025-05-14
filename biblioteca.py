@@ -67,34 +67,40 @@ class ContaBancaria():
         self.nome = nome
         self.tipo = tipo
         self.saldo = 0
-        self.limite = 0
+        self.limite = 1000
         self.statusConta = False
 
     def depositar(self,deposito):
-        self.saldo += deposito
-
+        if self.statusConta:
+            self.saldo += deposito
+        else:
+            print("Conta desativada, antes de fazer o deposito, ative.")
 
     def exibirSaldo (self):
-        print(self.saldo)
+        print(f"Seu saldo atual é de: R${self.saldo} e você tem {self.limite} de limite.")
 
     def ativarConta(self):
         if self.statusConta:
             print("A sua conta já está ativa.")
         elif not self.statusConta: # é a  mesma coisa de " if self.statusConta == False: "
             self.statusConta = True
+            print("Conta ativada!")
 
     def desativarConta(self):
         if self.saldo == 0:
             self.statusConta = False
             print("Conta desativada")
+        elif self.saldo < 0:
+            print(f"Impossivel desativar a conta. Você possui um saldo negativo com o banco de: {self.saldo}")
         else:
             print(f"Ainda resta um total de: {self.saldo} em sua conta, retire para desativar.")
 
     def sacar(self,valorSaque):
-        self.saldo-=valorSaque
-        print(f"Você sacou {valorSaque}")
-
-        #fazer um método para definir um limite
+        if valorSaque <= self.saldo + self.limite:
+            self.saldo -= valorSaque
+            print(f"Você sacou R${valorSaque}. Saldo atual: R${self.saldo}")
+        else:
+            print(f"Saque não autorizado. Você excedeu o limite disponível de R${self.limite}.")
 
 class Animal():
     def __init__(self,nome, cor):
@@ -168,12 +174,12 @@ class Triangulo(Forma):
         super().__init__()
 
     def calculaPerimetro(self, base,altura,lado):
-        self.perimetro = (base + altura) * 2
+        self.perimetro = base + altura + lado
         print(f"O perimetro do triangulo é: {self.perimetro}")
 
-    def calculaArea(self,base,altura,lado):
-        self.area = base*altura
-        print(f"A area do triangulo {self.area}")
+    def calculaArea(self,base,altura):
+        self.area = (base*altura)/2
+        print(f"A area do triangulo é: {self.area}")
 
 class Atleta():
     def __init__(self):
